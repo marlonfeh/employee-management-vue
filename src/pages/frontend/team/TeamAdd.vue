@@ -1,7 +1,11 @@
 <template>
-  <section class="container mx-auto flex flex-col items-center justify-center">
-    <div id="border">
-      <h2 class="py-10">Enter the Details of the new member.</h2>
+  <section
+    class="container mx-auto flex flex-col items-center justify-center text-gray-700"
+  >
+    <div class="my-4 p-4 border border-gray-500 rounded-2xl">
+      <h2 class="py-10 text-center font-medium">
+        Enter the Details of the new member.
+      </h2>
       <add-member-form @save-data="saveData"></add-member-form>
     </div>
   </section>

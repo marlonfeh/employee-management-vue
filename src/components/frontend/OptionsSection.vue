@@ -1,19 +1,26 @@
 <template >
-  <section v-if="mode === 'teams'">
+  <section class="container mx-auto flex justify-center">
+    <!--Teams-->
     <div
-      class="max-w-xs mx-auto flex justify-center space-x-4 py-4 mb-10 bg-gray-300 rounded-3xl"
+      class="flex justify-center space-x-4 py-3 px-4 mb-10 bg-gray-300 rounded-2xl"
+      v-if="mode === 'teams'"
     >
-      <button-main-light link to="/frontend/team-add"> Add </button-main-light>
-      <button-main-light> Group </button-main-light>
-      <button-main-light> Contact </button-main-light>
+      <base-button :mode="'teal-light'" link to="/frontend/team-add">
+        Add
+      </base-button>
+      <base-button :mode="'teal-light'"> Group </base-button>
+      <base-button> Contact </base-button>
     </div>
-  </section>
-  <section v-if="mode === 'groups'">
+    <!--Groups-->
     <div
-      class="max-w-xs mx-auto flex justify-center space-x-4 py-4 mb-10 bg-gray-300 rounded-3xl"
+      class="flex justify-center space-x-4 py-3 px-4 mb-10 bg-gray-300 rounded-2xl"
+      v-if="mode === 'groups'"
     >
-      <button-main-light link to="/frontend/team-add"> Add </button-main-light>
-      <button-main-light> Contact </button-main-light>
+      <base-button :mode="'teal-light'" link to="/frontend/team-add">
+        Add
+      </base-button>
+      <base-button :mode="'teal-light'"> Edit </base-button>
+      <base-button :mode="'teal-light'"> Contact </base-button>
     </div>
   </section>
 </template>
@@ -22,6 +29,13 @@
 <script>
 export default {
   props: ["mode"],
+  data() {
+    return {
+      add: false,
+      group: false,
+      contact: false,
+    };
+  },
   computed: {},
 };
 </script>
