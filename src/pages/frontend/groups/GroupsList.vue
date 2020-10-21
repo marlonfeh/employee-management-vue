@@ -1,6 +1,6 @@
 <template>
   <list-section></list-section>
-  <options-section></options-section>
+  <options-section :mode="'groups'"></options-section>
 </template>
 
 

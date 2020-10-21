@@ -1,24 +1,27 @@
-<template>
-  <section>
+<template >
+  <section v-if="mode === 'teams'">
     <div
-      class="max-w-xs mx-auto flex justify-center space-x-4 py-4 bg-gray-300 rounded-3xl"
+      class="max-w-xs mx-auto flex justify-center space-x-4 py-4 mb-10 bg-gray-300 rounded-3xl"
     >
-      <router-link
-        to="/frontend/team-add"
-        class="px-3 py-1 rounded-2xl text-white bg-teal-500 hover:bg-teal-600"
-      >
-        Add
-      </router-link>
-      <button
-        class="px-3 py-1 rounded-2xl text-white bg-teal-500 hover:bg-teal-600"
-      >
-        Group
-      </button>
-      <button
-        class="px-3 py-1 rounded-2xl text-white bg-teal-500 hover:bg-teal-600"
-      >
-        Contact
-      </button>
+      <button-main-light link to="/frontend/team-add"> Add </button-main-light>
+      <button-main-light> Group </button-main-light>
+      <button-main-light> Contact </button-main-light>
+    </div>
+  </section>
+  <section v-if="mode === 'groups'">
+    <div
+      class="max-w-xs mx-auto flex justify-center space-x-4 py-4 mb-10 bg-gray-300 rounded-3xl"
+    >
+      <button-main-light link to="/frontend/team-add"> Add </button-main-light>
+      <button-main-light> Contact </button-main-light>
     </div>
   </section>
 </template>
+
+
+<script>
+export default {
+  props: ["mode"],
+  computed: {},
+};
+</script>

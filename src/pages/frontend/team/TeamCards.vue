@@ -1,6 +1,6 @@
 <template>
   <card-section></card-section>
-  <options-section></options-section>
+  <options-section :mode="'teams'"></options-section>
 </template>
 
 

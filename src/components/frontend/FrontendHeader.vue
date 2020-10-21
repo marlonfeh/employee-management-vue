@@ -12,6 +12,6 @@
     <button-main-light link to="/frontend/groups-list"
       >Overview - Groups</button-main-light
     >
-    <button-main-light>Overview - Messages</button-main-light>
+    <button-main-light>Messages</button-main-light>
   </section>
 </template>

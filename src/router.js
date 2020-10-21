@@ -21,7 +21,6 @@ const router = createRouter({
       { path: '', component: TeamCards },
       ]
     },
-    {  },
     { path: '/backend', component: PlaceholderBackend },
     { path: '/:notFound(.*)', component: NotFound }
   ]

@@ -1,8 +1,22 @@
 <template>
-  <h1>Team Add</h1>
+  <section class="container mx-auto flex flex-col items-center justify-center">
+    <div id="border">
+      <h2 class="py-10">Enter the Details of the new member.</h2>
+      <add-member-form @save-data="saveData"></add-member-form>
+    </div>
+  </section>
 </template>
 
-
 <script>
-export default {};
+import AddMemberForm from "../../../components/frontend/team/AddMemberForm.vue";
+
+export default {
+  components: { AddMemberForm },
+  methods: {
+    saveData(data) {
+      this.$store.dispatch("members/addMember", data);
+      this.$router.replace("/frontend/team-cards");
+    },
+  },
+};
 </script>

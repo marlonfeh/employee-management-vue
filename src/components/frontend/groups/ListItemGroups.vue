@@ -2,12 +2,12 @@
   <div
     class="px-6 py-2 flex justify-between border-solid border border-gray-500 rounded-lg shadow-lg text-center"
   >
-    <div class="flex items-center space-x-10">
-      <div class="pr-6 font-semibold border-r border-gray-900">
+    <div class="flex items-center">
+      <div class="pr-10 font-semibold border-r border-gray-900">
         {{ groupName }}
       </div>
 
-      <ul class="flex space-x-8">
+      <ul class="pl-10 flex space-x-8">
         <li
           class="text-blue-600"
           v-for="groupMember in groupMembers"
@@ -17,9 +17,7 @@
         </li>
       </ul>
     </div>
-    <button
-      class="my-auto bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
-    >
+    <button-secondary>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
@@ -34,7 +32,7 @@
           d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
         />
       </svg>
-    </button>
+    </button-secondary>
   </div>
 </template>
 
