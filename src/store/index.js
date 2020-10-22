@@ -11,16 +11,12 @@ const store = createStore({
   state() {
     return {
       memberId: 'm7',
-      avatarImage: 'memberTwo.jpg'
     };
   },
   getters: {
     memberId(state) {
       return state.memberId;
     },
-    avatarImage(state){
-      return state.avatarImage;
-    }
   }
 });
 

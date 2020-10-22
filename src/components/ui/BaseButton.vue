@@ -27,6 +27,20 @@
   >
     <slot></slot>
   </router-link>
+  <!--Gray Outline-->
+  <button
+    v-if="!link && mode === 'gray-outline'"
+    class="my-auto px-3 py-1 rounded-full text-gray-700 border border-gray-500"
+  >
+    <slot></slot>
+  </button>
+  <router-link
+    v-else-if="link && mode === 'gray-outline'"
+    :to="to"
+    class="my-auto px-3 py-1 rounded-full text-white bg-gray-400 hover:bg-teal-800"
+  >
+    <slot></slot>
+  </router-link>
 </template>
 
 <script>
