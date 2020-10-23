@@ -61,7 +61,7 @@ export default {
           firstName: 'Stefan',
           lastName: 'Menke',
           email: 'stefan.menke@company.net',
-          qualifications: ['Frontend', 'Backend', 'Fullstack'],
+          qualifications: ['Frontend', 'Backend', 'Fullstack', 'ML', 'Economics'],
           gender: "Male",
           age: 30,
           nationality: "Germany",
