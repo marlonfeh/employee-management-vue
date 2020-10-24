@@ -4,13 +4,13 @@
     class="flex justify-end space-x-4 py-2 px-4 border-solid border-b border-gray-500"
   >
     <base-button :mode="'teal-light'" link to="/frontend/team-cards"
-      >Overview - Cards</base-button
+      >Team - Cards</base-button
     >
     <base-button :mode="'teal-light'" link to="/frontend/team-list"
-      >Overview - List</base-button
+      >Team - List</base-button
     >
     <base-button :mode="'teal-light'" link to="/frontend/groups-list"
-      >Overview - Groups</base-button
+      >Team - Groups</base-button
     >
     <base-button :mode="'teal-light'">Messages</base-button>
   </section>

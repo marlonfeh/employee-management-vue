@@ -10,20 +10,20 @@ export default {
         {
           id: 'g1',
           name: 'Team Vue',
-          lead: 'Franzi Maßmann',
-          members: ['Franzi Maßmann', 'Marlon Fe'],
+          lead: 'm4',
+          members: ["m4", "m3", "m1", "m5", "m6"],
         },
         {
           id: 'g2',
           name: 'Team Dairytale',
-          lead: 'Stefan Menke',
-          members: ['Stefan Menke', 'Franzi Maßmann'],
+          lead: 'm5',
+          members: ["m5", "m4"],
         },
         {
           id: 'g3',
           name: 'Superheroes',
-          lead: 'Franzi Maßmann',
-          members: ['Franzi Maßmann', 'Julie Jones'],
+          lead: 'm4',
+          members: ["m4", "m2"],
         },
       ]
     };

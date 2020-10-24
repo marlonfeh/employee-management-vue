@@ -4,7 +4,7 @@
     class="container mx-auto py-10 grid grid-cols-3 gap-x-24 gap-y-16 justify-items-center"
   >
     <card-item
-      v-for="member in filteredMembers"
+      v-for="member in Members"
       :key="member.id"
       :id="member.id"
       :avatar-image="member.avatarImage"
@@ -24,7 +24,7 @@ export default {
     CardItem,
   },
   computed: {
-    filteredMembers() {
+    Members() {
       return this.$store.getters["members/members"];
     },
   },

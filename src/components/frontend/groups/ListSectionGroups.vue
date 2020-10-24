@@ -4,8 +4,7 @@
       v-for="group in groups"
       :key="group.id"
       :id="group.id"
-      :groupName="group.name"
-      :groupMembers="group.members"
+      :group="group"
     ></list-item-groups>
   </section>
 </template>

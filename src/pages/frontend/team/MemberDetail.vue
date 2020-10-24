@@ -1,6 +1,6 @@
 <template>
   <section class="container mx-auto py-10 text-gray-700">
-    <div class="w-3/4 mx-auto flex">
+    <div class="w-3/4 mx-auto flex shadow-2xl">
       <div
         class="w-1/2 flex flex-col justify-center items-center text-white bg-gray-800 rounded-l-2xl"
       >
