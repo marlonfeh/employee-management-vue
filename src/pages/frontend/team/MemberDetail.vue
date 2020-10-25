@@ -9,7 +9,7 @@
           alt="avatar"
           class="h-32 w-32 rounded-full"
         />
-        <h2 class="my-4 font-medium">{{ fullName }}</h2>
+        <h2 class="my-4 text-xl font-medium">{{ fullName }}</h2>
         <p>{{ email }}</p>
       </div>
       <div
@@ -48,14 +48,12 @@
           Assigned to the following teams
         </h3>
         <ul class="grid grid-cols-3 gap-y-6 gap-x-4">
-          <li class="py-2 bg-teal-500 text-center text-white rounded-2xl">
-            Hardcoded
-          </li>
-          <li class="py-2 bg-teal-500 text-center text-white rounded-2xl">
-            Superheroes
-          </li>
-          <li class="py-2 bg-teal-500 text-center text-white rounded-2xl">
-            Dairytale
+          <li
+            class="py-2 bg-teal-500 text-center text-white rounded-2xl"
+            v-for="group in assignedGroups"
+            :key="group.id"
+          >
+            {{ group.name }}
           </li>
         </ul>
       </div>
@@ -69,6 +67,7 @@ export default {
   data() {
     return {
       selectedMember: null,
+      assignedGroups: null,
     };
   },
   computed: {
@@ -101,6 +100,9 @@ export default {
     this.selectedMember = this.$store.getters["members/members"].find(
       (member) => member.id === this.id
     );
+    this.assignedGroups = this.$store.getters["groups/groups"].filter((el) => {
+      return el.members.includes(this.id);
+    });
   },
 };
 </script>

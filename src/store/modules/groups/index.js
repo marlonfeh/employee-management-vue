@@ -23,7 +23,7 @@ export default {
           id: 'g3',
           name: 'Superheroes',
           lead: 'm4',
-          members: ["m4", "m2"],
+          members: ["m4", "m2", "m3"],
         },
       ]
     };

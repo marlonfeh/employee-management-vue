@@ -13,6 +13,7 @@
   >
     <slot></slot>
   </router-link>
+
   <!--Teal Dark-->
   <button
     v-if="!link && mode === 'teal-dark'"

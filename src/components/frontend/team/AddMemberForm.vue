@@ -1,5 +1,9 @@
 <template>
-  <form @submit.prevent="submitForm" class="flex flex-col items-center">
+  <form
+    @submit.prevent="submitForm"
+    class="flex flex-col items-center"
+    id="addMemberForm"
+  >
     <div class="w-full flex space-x-10">
       <div class="w-1/2">
         <label
@@ -78,9 +82,9 @@
             v-model="gender.val"
           >
             <option disabled value="">Select an Option</option>
-            <option value="female">Female</option>
-            <option value="male">Male</option>
-            <option value="divers">Divers</option>
+            <option value="Female">Female</option>
+            <option value="Male">Male</option>
+            <option value="Divers">Divers</option>
           </select>
           <div
             class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"
@@ -223,11 +227,21 @@
         <label for="ux" class="ml-6">UX</label>
       </div>
     </div>
-    <div class="flex space-x-6">
-      <base-button :mode="'teal-light'">Add Member</base-button>
-      <base-button :mode="'gray-outline'">Reset</base-button>
-    </div>
   </form>
+  <div class="flex justify-center space-x-6">
+    <button
+      class="my-auto px-3 py-1 rounded-full text-white bg-teal-500 hover:bg-teal-600"
+      form="addMemberForm"
+    >
+      Add Member
+    </button>
+    <button
+      class="my-auto px-3 py-1 rounded-full text-gray-700 border border-gray-500"
+      @click="resetForm"
+    >
+      Reset
+    </button>
+  </div>
 </template>
 
 <script>
@@ -301,6 +315,14 @@ export default {
     },
     resetForm() {
       this.firstName.val = "";
+      this.lastName.val = "";
+      this.gender.val = "";
+      this.age.val = "";
+      this.avatarImage.val = "";
+      this.nationality.val = "";
+      this.location.val = "";
+      this.email.val = "";
+      this.qualifications.val = [];
     },
   },
 };

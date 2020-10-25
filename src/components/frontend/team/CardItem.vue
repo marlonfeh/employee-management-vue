@@ -40,8 +40,13 @@ export default {
       return this.firstName + " " + this.lastName;
     },
     membersDetailsLink() {
-      return "frontend/team-cards/" + this.id; // /coaches/c1
+      return "/frontend/team-cards/" + this.id; // /coaches/c1
     },
+    /*
+    membersDetailsLink() {
+      return this.$route.path + "/" + this.id; // /coaches/c1
+    },
+    */
   },
 };
 </script>
