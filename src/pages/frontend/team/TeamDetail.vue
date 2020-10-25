@@ -1,1 +1,0 @@
-<template>teamDetail</template>

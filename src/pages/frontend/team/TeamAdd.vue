@@ -19,7 +19,7 @@ export default {
   methods: {
     saveData(data) {
       this.$store.dispatch("members/addMember", data);
-      this.$router.replace("/frontend/team-cards");
+      this.$router.replace("/frontend/team-add/success");
     },
   },
 };
