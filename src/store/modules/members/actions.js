@@ -15,5 +15,9 @@ export default {
     };
 
     context.commit('addMember', memberData);
+  },
+  toggleSelected(context, data){
+    
+    context.commit('toggleSelected', data)
   }
 };

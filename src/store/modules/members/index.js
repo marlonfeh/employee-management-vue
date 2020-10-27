@@ -18,6 +18,8 @@ export default {
           age: 42,
           nationality: "UK",
           location: "London",
+          hourlyWage: 30,
+          selected: false,
         },
         {
           id: 'm2',
@@ -30,6 +32,8 @@ export default {
           age: 45,
           nationality: "France",
           location: "Paris",
+          hourlyWage: 30,
+          selected: false,
         },
         {
           id: 'm3',
@@ -42,6 +46,8 @@ export default {
           age: 25,
           nationality: "Germany",
           location: "Hamburg",
+          hourlyWage: 30,
+          selected: false,
         },
         {
           id: 'm4',
@@ -54,6 +60,8 @@ export default {
           age: 24,
           nationality: "Germany",
           location: "Passau",
+          hourlyWage: 30,
+          selected: false,
         },
         {
           id: 'm5',
@@ -66,6 +74,8 @@ export default {
           age: 30,
           nationality: "Germany",
           location: "Bielefeld",
+          hourlyWage: 30,
+          selected: false,
         },
         {
           id: 'm6',
@@ -78,6 +88,7 @@ export default {
           age: 60,
           nationality: "Germany",
           location: "Munich",
+          selected: false,
         },
         
       ]

@@ -12,8 +12,12 @@
       :last-name="member.lastName"
       :email="member.email"
       :qualifications="member.qualifications"
+      @show-log="showLog"
     ></card-item>
   </section>
+  <ul v-for="member in Members" :key="member.id">
+    <li>{{ member.id }}: {{ member.selected }}</li>
+  </ul>
 </template>
 
 <script>
@@ -26,6 +30,11 @@ export default {
   computed: {
     Members() {
       return this.$store.getters["members/members"];
+    },
+  },
+  methods: {
+    showLog(e) {
+      console.log(e);
     },
   },
 };
