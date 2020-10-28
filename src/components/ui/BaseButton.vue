@@ -1,8 +1,9 @@
 <template>
   <!--Teal Light-->
   <button
-    v-if="!link && mode === 'teal-light'"
+    v-if="click && mode === 'teal-light'"
     class="my-auto px-3 py-1 rounded-full text-white bg-teal-500 hover:bg-teal-600"
+    @click="clickHandler"
   >
     <slot></slot>
   </button>
@@ -13,7 +14,12 @@
   >
     <slot></slot>
   </router-link>
-
+  <button
+    v-else-if="!link && mode === 'teal-light'"
+    class="my-auto px-3 py-1 rounded-full text-white bg-teal-500 hover:bg-teal-600"
+  >
+    <slot></slot>
+  </button>
   <!--Teal Dark-->
   <button
     v-if="!link && mode === 'teal-dark'"
@@ -52,6 +58,11 @@ export default {
       required: false,
       default: false,
     },
+    click: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
     mode: {
       type: String,
       required: true,
@@ -61,6 +72,12 @@ export default {
       type: String,
       required: false,
       default: "/",
+    },
+  },
+  emits: ["click-handler"],
+  methods: {
+    clickHandler() {
+      this.$emit("click-handler");
     },
   },
 };

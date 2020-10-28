@@ -1,7 +1,7 @@
 <template>
   <div
     class="max-w-xs min-w-full px-6 py-4 flex flex-col items-center space-y-2 border-solid border border-gray-500 rounded-lg shadow-xl"
-    :class="{ active: isActive }"
+    :class="{ active: selected }"
     @click="toggleSelected"
   >
     <img
@@ -23,7 +23,7 @@
     <base-button link :mode="'teal-light'" :to="membersDetailsLink"
       >Details</base-button
     >
-    <p>{{ isActive }}</p>
+    <p>{{ selected }}</p>
   </div>
 </template>
 
@@ -36,11 +36,10 @@ export default {
     "lastName",
     "email",
     "qualifications",
+    "selected",
   ],
   data() {
-    return {
-      isActive: false,
-    };
+    return {};
   },
   computed: {
     fullName() {
@@ -50,11 +49,13 @@ export default {
       return "/frontend/team-cards/" + this.id; // /coaches/c1
     },
 
+    /*
     Member() {
       return this.$store.getters["members/members"].find(
         (member) => member.id === this.id
       );
     },
+    */
 
     /*
     membersDetailsLink() {
@@ -64,13 +65,7 @@ export default {
   },
   methods: {
     toggleSelected() {
-      this.isActive = !this.isActive;
-      //console.log(this.Members);
-
-      //add mutation to toggle state of selected
-      this.$store.dispatch("members/toggleSelected", this.id);
-
-      this.$emit("show-log", this.id);
+      this.$emit("toggle-selected", this.id);
     },
   },
 };

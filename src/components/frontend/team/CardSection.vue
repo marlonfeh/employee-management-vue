@@ -12,7 +12,8 @@
       :last-name="member.lastName"
       :email="member.email"
       :qualifications="member.qualifications"
-      @show-log="showLog"
+      :selected="member.selected"
+      @toggle-selected="toggleSelected"
     ></card-item>
   </section>
   <ul v-for="member in Members" :key="member.id">
@@ -33,8 +34,11 @@ export default {
     },
   },
   methods: {
-    showLog(e) {
-      console.log(e);
+    toggleSelected(memberID) {
+      //console.log(memberID);
+
+      //add mutation to toggle state of selected
+      this.$store.dispatch("members/toggleSelected", memberID);
     },
   },
 };

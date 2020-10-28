@@ -290,7 +290,7 @@ export default {
   },
   methods: {
     generateID() {
-      return "_" + Math.random().toString(36).substr(2, 9);
+      return Math.random().toString(36).substr(2, 9);
     },
     generateEmail() {
       return `${this.firstName.val}.${this.lastName.val}@company.net`;

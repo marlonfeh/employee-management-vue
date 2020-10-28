@@ -13,11 +13,12 @@ export default {
       email: data.email,
       qualifications: data.qualifications
     };
-
     context.commit('addMember', memberData);
   },
   toggleSelected(context, data){
-    
     context.commit('toggleSelected', data)
+  },
+  resetSelected(context){
+    context.commit('resetSelected')
   }
 };
