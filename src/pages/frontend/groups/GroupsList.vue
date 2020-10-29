@@ -13,5 +13,8 @@ export default {
     ListSection,
     OptionsSection,
   },
+  created() {
+    this.$store.dispatch("groups/deleteTMPGroups");
+  },
 };
 </script>

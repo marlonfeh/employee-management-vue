@@ -23,7 +23,6 @@
     <base-button link :mode="'teal-light'" :to="membersDetailsLink"
       >Details</base-button
     >
-    <p>{{ selected }}</p>
   </div>
 </template>
 
@@ -48,20 +47,6 @@ export default {
     membersDetailsLink() {
       return "/frontend/team-cards/" + this.id; // /coaches/c1
     },
-
-    /*
-    Member() {
-      return this.$store.getters["members/members"].find(
-        (member) => member.id === this.id
-      );
-    },
-    */
-
-    /*
-    membersDetailsLink() {
-      return this.$route.path + "/" + this.id; // /coaches/c1
-    },
-    */
   },
   methods: {
     toggleSelected() {

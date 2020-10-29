@@ -13,5 +13,9 @@ export default {
     ListSection,
     OptionsSection,
   },
+  created() {
+    //if group item with status tmp -> delete it
+    this.$store.dispatch("groups/deleteTMPGroups");
+  },
 };
 </script>

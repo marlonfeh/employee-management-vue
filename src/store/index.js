@@ -6,7 +6,7 @@ import groupsModule from './modules/groups/index.js';
 const store = createStore({
   modules: {
     members: membersModule,
-    groups: groupsModule
+    groups: groupsModule,
   },
   state() {
     return {

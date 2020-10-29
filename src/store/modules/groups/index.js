@@ -26,7 +26,7 @@ export default {
           name: 'Superheroes',
           lead: 'm4',
           members: ["m4", "m2", "m3"],
-          tmp: true,
+          tmp: false,
         },
       ]
     };

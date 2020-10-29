@@ -10,7 +10,7 @@
       >Team - List</base-button
     >
     <base-button :mode="'teal-light'" link to="/frontend/groups-list"
-      >Team - Groups</base-button
+      >Groups - List</base-button
     >
     <base-button :mode="'teal-light'">Messages</base-button>
   </section>

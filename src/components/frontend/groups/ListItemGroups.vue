@@ -6,6 +6,7 @@
       <div class="pr-10 font-semibold border-r border-gray-900">
         {{ group.name }}
       </div>
+      <div class="ml-6">Aggr. FTE: 1.6</div>
 
       <ul class="pl-10 flex space-x-8">
         <li
