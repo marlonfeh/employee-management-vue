@@ -70,6 +70,7 @@ export default {
 
       this.resetSelected();
       //this. route replace to group add section
+      this.$router.replace("/frontend/group-add/" + groupData.id);
     },
     test() {
       console.log("test");

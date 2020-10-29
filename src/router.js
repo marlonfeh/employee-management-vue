@@ -9,6 +9,8 @@ import TeamAddSuccess from './pages/frontend/team/TeamAddSuccess.vue';
 
 import GroupsList from './pages/frontend/groups/GroupsList.vue';
 import GroupDetail from './pages/frontend/groups/GroupDetail.vue';
+import GroupAdd from './pages/frontend/groups/GroupAdd.vue';
+import GroupAddSuccess from './pages/frontend/groups/GroupAddSuccess.vue';
 
 import PlaceholderBackend from './pages/backend/PlaceholderBackend.vue';
 import NotFound from './pages/NotFound.vue';
@@ -25,8 +27,12 @@ const router = createRouter({
       { path: 'team-add', component: TeamAdd },
       { path: 'team-add/success', component: TeamAddSuccess},
       { path: 'team-cards/:id', component: MemberDetail, props: true},
+      
       { path: 'groups-list', component: GroupsList },
       { path: 'group-detail/:id', component: GroupDetail, props: true},
+      { path: 'group-add/:id', component: GroupAdd, props: true},
+      { path: 'group-add/success', component: GroupAddSuccess},
+      
       { path: '', component: TeamCards },
       
       ]

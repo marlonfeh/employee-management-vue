@@ -1,5 +1,5 @@
 <template>
-  <success-section :mode="'team'"></success-section>
+  <success-section :mode="'group'"></success-section>
 </template>
 
 <script>

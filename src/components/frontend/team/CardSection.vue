@@ -16,8 +16,10 @@
       @toggle-selected="toggleSelected"
     ></card-item>
   </section>
-  <ul v-for="member in Members" :key="member.id">
-    <li>{{ member.id }}: {{ member.selected }}</li>
+  <ul>
+    <li v-for="member in Members" :key="member.id">
+      {{ member.id }}: {{ member.selected }}
+    </li>
   </ul>
 </template>
 

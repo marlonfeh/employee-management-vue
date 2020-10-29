@@ -309,8 +309,6 @@ export default {
         qualifications: this.qualifications.val,
       };
 
-      console.log(formData);
-
       this.$emit("save-data", formData);
     },
     resetForm() {
