@@ -40,7 +40,7 @@ export default {
   created() {
     this.groupMembers = this.$store.getters["members/members"].filter((el) => {
       return this.group.members.some((f) => {
-        return f === el.id;
+        return f.id === el.id;
       });
     });
   },

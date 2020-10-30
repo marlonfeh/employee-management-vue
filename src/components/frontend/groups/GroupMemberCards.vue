@@ -20,21 +20,13 @@
 import CardItem from "../team/CardItem.vue";
 
 export default {
-  props: ["group"],
+  props: ["groupMembers"],
   components: {
     CardItem,
   },
   data() {
-    return {
-      groupMembers: null,
-    };
+    return {};
   },
-  created() {
-    this.groupMembers = this.$store.getters["members/members"].filter((el) => {
-      return this.group.members.some((f) => {
-        return f === el.id;
-      });
-    });
-  },
+  created() {},
 };
 </script>

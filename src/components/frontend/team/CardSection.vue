@@ -16,11 +16,6 @@
       @toggle-selected="toggleSelected"
     ></card-item>
   </section>
-  <ul>
-    <li v-for="member in Members" :key="member.id">
-      {{ member.id }}: {{ member.selected }}
-    </li>
-  </ul>
 </template>
 
 <script>
@@ -37,9 +32,6 @@ export default {
   },
   methods: {
     toggleSelected(memberID) {
-      //console.log(memberID);
-
-      //add mutation to toggle state of selected
       this.$store.dispatch("members/toggleSelected", memberID);
     },
   },

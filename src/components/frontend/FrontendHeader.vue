@@ -12,6 +12,5 @@
     <base-button :mode="'teal-light'" link to="/frontend/groups-list"
       >Groups - List</base-button
     >
-    <base-button :mode="'teal-light'">Messages</base-button>
   </section>
 </template>

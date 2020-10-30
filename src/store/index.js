@@ -11,11 +11,15 @@ const store = createStore({
   state() {
     return {
       memberId: 'm7',
+      fteValue: 40,
     };
   },
   getters: {
     memberId(state) {
       return state.memberId;
+    },
+    fteValue(state) {
+      return state.fteValue;
     },
   }
 });

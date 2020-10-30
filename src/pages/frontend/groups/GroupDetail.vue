@@ -13,10 +13,18 @@
           <span class="font-semibold">Number of Members:</span>
           {{ memberNumber }}
         </p>
+        <p>
+          <span class="font-semibold">Aggregated FTE:</span>
+          {{ aggregatedFTE }}
+        </p>
+        <p>
+          <span class="font-semibold">Aggregated Wage per Hour:</span>
+          {{ aggregatedFTE }}
+        </p>
       </div>
     </div>
   </section>
-  <group-member-cards :group="group"></group-member-cards>
+  <group-member-cards :groupMembers="groupMembers"></group-member-cards>
 </template>
 
 <script>
@@ -25,6 +33,7 @@ export default {
   data() {
     return {
       group: null,
+      groupMembers: null,
     };
   },
   components: {
@@ -40,11 +49,25 @@ export default {
     memberNumber() {
       return this.group.members.length;
     },
+    aggregatedFTE() {
+      return this.group.members.reduce((acc, curr) => acc + curr.fte, 0);
+    },
+    /*
+    aggregatedWage() {
+      return this.group.members.reduce((acc, curr) => acc + curr.fte, 0);
+    },
+    */
   },
   created() {
     this.group = this.$store.getters["groups/groups"].find(
       (group) => group.id === this.id
     );
+
+    this.groupMembers = this.$store.getters["members/members"].filter((el) => {
+      return this.group.members.some((f) => {
+        return f.id === el.id;
+      });
+    });
   },
 };
 </script>

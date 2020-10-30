@@ -14,7 +14,7 @@ export default {
     OptionsSection,
   },
   created() {
-    //if group item with status tmp -> delete it
+    this.$store.dispatch("members/resetSelected");
     this.$store.dispatch("groups/deleteTMPGroups");
   },
 };
