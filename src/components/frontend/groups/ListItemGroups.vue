@@ -1,26 +1,26 @@
 <template>
   <div
-    class="px-6 py-2 flex justify-between border-solid border border-gray-500 rounded-lg shadow-lg text-center"
+    class="px-6 py-3 grid grid-cols-12 items-center border-solid border border-gray-500 rounded-lg shadow-lg"
   >
-    <div class="flex items-center">
-      <div class="pr-10 font-semibold border-r border-gray-900">
-        {{ group.name }}
-      </div>
-      <div class="ml-6">Aggr. FTE: 1.6</div>
-
-      <ul class="pl-10 flex space-x-8">
-        <li
-          class="text-blue-600"
-          v-for="groupMember in groupMembers"
-          :key="groupMember"
-        >
-          {{ groupMember.firstName }} {{ groupMember.lastName }}
-        </li>
-      </ul>
+    <div class="col-span-2 font-semibold">
+      {{ group.name }}
     </div>
-    <base-button link :mode="'teal-light'" :to="groupDetailsLink"
-      >Details</base-button
-    >
+    <div class="col-span-2">Aggr. FTE: {{ aggregatedFTE }}</div>
+
+    <ul class="col-span-7 flex space-x-8">
+      <li
+        class="text-blue-600"
+        v-for="groupMember in groupMembers"
+        :key="groupMember"
+      >
+        {{ groupMember.firstName }} {{ groupMember.lastName }}
+      </li>
+    </ul>
+    <div class="col-span-1">
+      <base-button link :mode="'teal-light'" :to="groupDetailsLink"
+        >Details</base-button
+      >
+    </div>
   </div>
 </template>
 
@@ -34,7 +34,13 @@ export default {
   },
   computed: {
     groupDetailsLink() {
-      return "group-detail/" + this.id; // /coaches/c1
+      return "group-detail/" + this.id;
+    },
+    aggregatedFTE() {
+      return (
+        Math.round(this.group.members.reduce((a, b) => a + b.fte, 0) * 100) /
+        100
+      );
     },
   },
   created() {

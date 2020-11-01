@@ -3,9 +3,9 @@
     id="header"
     class="flex justify-end space-x-4 py-2 px-4 border-solid border-b border-gray-500"
   >
-    <button-main-dark link to="/frontend/team-cards">
+    <base-button link to="/frontend/team-cards" :mode="'teal-dark'">
       Frontend
-    </button-main-dark>
+    </base-button>
     <base-button link to="/backend" :mode="'teal-dark'"> Backend </base-button>
     <base-button :mode="'teal-dark'"> Save </base-button>
   </section>

@@ -42,10 +42,10 @@
           <p>{{ hourlyWage }}€ / Hour</p>
 
           <h4 class="mr-6 font-semibold tracking-wide">FTE assigned:</h4>
-          <p>{{ assignedFTE() }}</p>
+          <p>{{ assignedFTE }}</p>
 
           <h4 class="mr-6 font-semibold tracking-wide">FTE available:</h4>
-          <p>{{ availableFTE() }}</p>
+          <p>{{ availableFTE }}</p>
         </div>
 
         <h3 class="font-semibold tracking-wide uppercase underline">
@@ -98,13 +98,13 @@
           class="my-2 mx-4 py-4 grid grid-cols-3 border-t border-gray-600"
         >
           <p class="font-medium">{{ group.name }}</p>
-          <p>{{ findMemberFTE(group.id) }}</p>
-          <p>{{ calcWage(group.id) }}€ / Week</p>
+          <p>{{ findMemberFTE(group.members) }}</p>
+          <p>{{ calcWage(group.members) }}€ / Week</p>
         </div>
         <div class="my-2 mx-4 py-4 grid grid-cols-3 border-t border-gray-600">
           <p></p>
-          <p class="font-medium">{{ assignedFTE() }}</p>
-          <p class="font-medium">{{ calcWageSum() }}€ / Week</p>
+          <p class="font-medium">{{ assignedFTE }}</p>
+          <p class="font-medium">{{ wageSum() }}€ / Week</p>
         </div>
       </div>
 
@@ -120,34 +120,34 @@
           <p class="font-semibold tracking-wide uppercase">Calculated Wage</p>
         </div>
         <div
-          v-for="(group, index) in assignedGroups"
-          :key="index"
+          v-for="group in assignedGroups"
+          :key="group.id"
           class="mt-2 mx-4 py-4 grid grid-cols-3 border-t border-gray-600"
         >
           <p class="font-medium">{{ group.name }}</p>
           <input
             class="w-24 px-4 py-1 bg-gray-200 border border-gray-200 rounded text-gray-700 focus:outline-none focus:border-gray-500"
             type="number"
-            min="0.05"
-            :max="maxFTE(group.id)"
-            step=".05"
+            min="0.01"
+            :max="availableFTE"
+            step=".01"
+            placeholder="0.5"
+            v-model="newFTE.val"
             :id="group.id"
-            v-model.number="selectedMemberWages[index].fte"
           />
-          <p>{{ calcWage(group.id) }}€ / Week</p>
+          <p>{{ calcWage(group.members) }}€ / Week</p>
         </div>
         <div class="my-2 mx-4 py-4 grid grid-cols-3 border-t border-gray-600">
           <p></p>
-          <p class="font-medium">{{ assignedFTE() }}</p>
-          <p class="font-medium">{{ calcWageSum() }}€ / Week</p>
+          <p class="font-medium">{{ assignedFTE }}</p>
+          <p class="font-medium">{{ wageSum() }}€ / Week</p>
         </div>
       </div>
+      <p>{{ newFTE.val }}</p>
 
       <options-section
-        :edit="edit"
         :mode="'member-detail'"
-        @click-edit="toggleEditMode"
-        @click-save="saveData"
+        @emit-event="toggleEditMode"
       ></options-section>
     </div>
   </section>
@@ -164,9 +164,13 @@ export default {
   data() {
     return {
       selectedMember: null,
-      selectedMemberWages: [],
       assignedGroups: null,
       edit: false,
+      Wages: [],
+      newFTE: {
+        val: [],
+        isValid: true,
+      },
     };
   },
   computed: {
@@ -206,53 +210,48 @@ export default {
     getFTEValue() {
       return this.$store.getters["fteValue"];
     },
-  },
-  methods: {
     assignedFTE() {
+      const fteData = [];
+
+      this.assignedGroups.forEach((e) => {
+        e.members.find((el) => {
+          if (el.id === this.id) {
+            fteData.push(el.fte);
+          }
+        });
+      });
+
+      return Math.round(fteData.reduce((a, b) => a + b, 0) * 100) / 100;
+    },
+    availableFTE() {
       return (
         Math.round(
-          this.selectedMemberWages.reduce((a, b) => a + b.fte, 0) * 100
+          (this.selectedMember.availability - this.assignedFTE) * 100
         ) / 100
       );
     },
-    availableFTE() {
-      const assignedFTE = this.assignedFTE();
-      return (
-        Math.round((this.selectedMember.availability - assignedFTE) * 100) / 100
-      );
+  },
+  methods: {
+    findMemberFTE(data) {
+      return data.filter((el) => {
+        return el.id === this.id;
+      })[0].fte;
     },
-    maxFTE(groupId) {
-      return this.availableFTE() + this.findMemberFTE(groupId);
-    },
-    findMemberFTE(groupId) {
-      return this.selectedMemberWages.find((el) => {
-        return el.id === groupId;
-      }).fte;
-    },
+    calcWage(data) {
+      const fte = this.findMemberFTE(data);
+      const wage = this.hourlyWage * fte * this.getFTEValue;
 
-    calcWage(id) {
-      const fte = this.findMemberFTE(id);
-      return this.hourlyWage * fte * this.getFTEValue;
+      this.Wages.push(wage);
+
+      return wage;
     },
-    calcWageSum() {
-      const assignedFTE = this.assignedFTE();
-      return assignedFTE * this.hourlyWage * this.getFTEValue;
+    wageSum() {
+      const wages = this.Wages.reduce((a, b) => a + b, 0);
+      this.Wages = [];
+      return wages;
     },
     toggleEditMode() {
-      console.log("click edit");
       this.edit = !this.edit;
-    },
-    saveData() {
-      console.log("click save");
-
-      const data = {
-        id: this.selectedMember.id,
-        groupData: this.selectedMemberWages,
-      };
-
-      this.$store.dispatch("groups/changeMemberFTE", data);
-
-      this.toggleEditMode();
     },
   },
   created() {
@@ -261,15 +260,6 @@ export default {
     );
     this.assignedGroups = this.$store.getters["groups/groups"].filter((el) => {
       return el.members.find((member) => member.id === this.id);
-    });
-
-    this.assignedGroups.forEach((el) => {
-      this.selectedMemberWages.push({
-        id: el.id,
-        fte: el.members.find((el) => {
-          return el.id === this.selectedMember.id;
-        }).fte,
-      });
     });
   },
 };

@@ -21,5 +21,10 @@ export default {
   },
   deleteTMPGroups(context){
     context.commit('deleteTMPGroups')
+  },
+  changeMemberFTE(context, data){
+    context.commit('changeMemberFTE', data)
+
+    
   }
 };

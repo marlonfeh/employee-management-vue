@@ -28,7 +28,10 @@
       class="flex justify-center space-x-4 py-3 px-4 mb-10 bg-gray-300 rounded-2xl"
       v-if="mode === 'member-detail'"
     >
-      <base-button :mode="'teal-light'"> Edit </base-button>
+      <base-button v-if="!edit" click @click-handler="clickEdit">
+        Edit
+      </base-button>
+      <base-button v-else click @click-handler="clickSave"> Save </base-button>
     </div>
   </section>
 </template>
@@ -36,7 +39,8 @@
 
 <script>
 export default {
-  props: ["mode"],
+  props: ["mode", "edit"],
+  emits: ["click-edit", "click-save"],
   data() {
     return {
       add: false,
@@ -75,8 +79,14 @@ export default {
 
       this.$router.replace("/frontend/group-add/" + groupData.id);
     },
-    test() {
-      console.log("test");
+    emitEvent() {
+      this.$emit("emit-event");
+    },
+    clickEdit() {
+      this.$emit("click-edit");
+    },
+    clickSave() {
+      this.$emit("click-save");
     },
   },
 };
