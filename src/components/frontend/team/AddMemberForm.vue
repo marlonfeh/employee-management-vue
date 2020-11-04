@@ -132,9 +132,25 @@
         />
       </div>
     </div>
-
     <div class="w-full flex space-x-10">
-      <div class="w-1/2 pr-5">
+      <div class="w-1/2">
+        <label
+          class="w-full block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+          for="availability"
+          >Availability (FTE)</label
+        >
+        <input
+          class="w-full px-4 py-2 mb-4 bg-gray-200 border border-gray-200 rounded text-base text-gray-700 focus:outline-none focus:border-gray-500"
+          type="number"
+          id="availability"
+          placeholder="1"
+          v-model.number="availability.val"
+          min="0"
+          max="1"
+          step=".05"
+        />
+      </div>
+      <div class="w-1/2">
         <label
           class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
           for="location"
@@ -285,6 +301,10 @@ export default {
         val: [],
         isValid: true,
       },
+      availability: {
+        val: "",
+        isValid: true,
+      },
       formIsValid: true,
     };
   },
@@ -293,7 +313,7 @@ export default {
       return Math.random().toString(36).substr(2, 9);
     },
     generateEmail() {
-      return `${this.firstName.val}.${this.lastName.val}@company.net`;
+      return `${this.firstName.val}.${this.lastName.val}@company.net`.toLowerCase();
     },
     submitForm() {
       const formData = {
@@ -307,6 +327,7 @@ export default {
         location: this.location.val,
         email: this.generateEmail(),
         qualifications: this.qualifications.val,
+        availability: this.availability.val,
       };
 
       this.$emit("save-data", formData);
@@ -321,6 +342,7 @@ export default {
       this.location.val = "";
       this.email.val = "";
       this.qualifications.val = [];
+      this.availability.val = "";
     },
   },
 };

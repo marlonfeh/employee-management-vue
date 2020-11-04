@@ -6,7 +6,10 @@
     <base-button link to="/frontend/team-cards" :mode="'teal-dark'">
       Frontend
     </base-button>
-    <base-button link to="/backend" :mode="'teal-dark'"> Backend </base-button>
+    <base-button link to="/backend" :mode="'teal-dark'">
+      Master Data
+    </base-button>
+    <base-button :mode="'teal-dark'"> Options </base-button>
     <base-button :mode="'teal-dark'"> Save </base-button>
   </section>
 </template>

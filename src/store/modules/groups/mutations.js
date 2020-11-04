@@ -6,6 +6,7 @@ export default {
     let groupItem = state.groups.find(group => group.id === payload.id);
     groupItem.name = payload.name;
     groupItem.lead = payload.lead;
+    groupItem.members = payload.members;
     groupItem.tmp = false;
   },
   deleteTMPGroups(state){
@@ -16,12 +17,7 @@ export default {
     state.groups = filteredGroups;
   },
   changeMemberFTE(state, data){
-    //const groups = state.groups
-
-
     data.groupData.forEach(el => {
-      //let groupItem = state.groups.find(group => group.id === el.id)
-
       let memberData = state.groups.find(group => group.id === el.id).members.find(member => member.id === data.id)
 
       memberData.fte = el.fte

@@ -32,7 +32,7 @@
             id="lead"
             v-model="lead.val"
           >
-            <option disabled value="">Select an Option</option>
+            <option disabled>Select an Option</option>
             <option
               v-for="member in groupMember"
               :key="member.id"
@@ -57,6 +57,33 @@
         </div>
       </div>
     </div>
+    <div class="">
+      <p
+        class="block uppercase tracking-wide text-gray-700 text-sm font-bold mb-4"
+        for="name"
+      >
+        Assign FTE Values
+      </p>
+      <div
+        class="grid grid-cols-3 items-center mb-2"
+        v-for="(member, index) in groupMember"
+        :key="index"
+      >
+        <p class="tracking-wide text-gray-700 text-sm font-bold">
+          {{ member.firstName }} {{ member.lastName }}
+        </p>
+        <input
+          class="w-1/2 px-4 py-2 bg-gray-200 border border-gray-200 rounded text-base text-gray-700 focus:outline-none focus:border-gray-500"
+          type="number"
+          min="0"
+          :max="FTEAvailable(member.id)"
+          step=".05"
+          :id="member.id"
+          v-model.number="FTEData.val[index].fte"
+        />
+        <p>Available FTE: {{ getFTEMax(member.id) }}</p>
+      </div>
+    </div>
   </form>
   <div class="flex justify-center space-x-6 mt-6">
     <button
@@ -76,19 +103,29 @@
 
 <script>
 export default {
-  props: ["groupMember"],
+  props: ["groupMember", "assignedFTE"],
   emits: ["save-data"],
   data() {
     return {
       name: {
         val: "",
         isValid: true,
+        default: "New Team",
       },
       lead: {
         val: "",
         isValid: true,
       },
-
+      FTEData: null,
+      /*
+      FTEData: {
+        val: [
+          { id: "m5", fte: 0 },
+          { id: "m6", fte: 0 },
+        ],
+        isValid: true,
+      },
+      */
       formIsValid: true,
     };
   },
@@ -102,12 +139,34 @@ export default {
       const formData = {
         name: this.name.val,
         lead: this.lead.val,
+        members: this.FTEData.val,
       };
 
       console.log(formData);
 
       this.$emit("save-data", formData);
     },
+    FTEAvailable(memberID) {
+      return this.groupMember.find((el) => {
+        return el.id === memberID;
+      }).FTEAvailable;
+    },
+    getFTEMax(memberID) {
+      return (
+        Math.round(
+          (this.groupMember.find((el) => {
+            return el.id === memberID;
+          }).FTEAvailable -
+            this.FTEData.val.find((el) => {
+              return el.id === memberID;
+            }).fte) *
+            100
+        ) / 100
+      );
+    },
+  },
+  created() {
+    this.FTEData = this.assignedFTE;
   },
 };
 </script>

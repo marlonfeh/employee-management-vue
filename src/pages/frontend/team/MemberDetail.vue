@@ -218,7 +218,7 @@ export default {
     availableFTE() {
       const assignedFTE = this.assignedFTE();
       return (
-        Math.round((this.selectedMember.availability - assignedFTE) * 100) / 100
+        Math.round((this.selectedMember.FTETotal - assignedFTE) * 100) / 100
       );
     },
     maxFTE(groupId) {
@@ -239,12 +239,9 @@ export default {
       return assignedFTE * this.hourlyWage * this.getFTEValue;
     },
     toggleEditMode() {
-      console.log("click edit");
       this.edit = !this.edit;
     },
     saveData() {
-      console.log("click save");
-
       const data = {
         id: this.selectedMember.id,
         groupData: this.selectedMemberWages,

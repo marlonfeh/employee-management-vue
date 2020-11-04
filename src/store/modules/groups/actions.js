@@ -11,20 +11,12 @@ export default {
     context.commit('createGroup', groupData);
   },
   saveGroup(context, data){
-    const groupData = {
-      id: data.id,
-      name: data.name,
-      lead: data.lead,
-    };
-
-    context.commit('saveGroup', groupData);
+    context.commit('saveGroup', data);
   },
   deleteTMPGroups(context){
     context.commit('deleteTMPGroups')
   },
   changeMemberFTE(context, data){
     context.commit('changeMemberFTE', data)
-
-    
   }
 };

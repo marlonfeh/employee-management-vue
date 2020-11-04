@@ -11,7 +11,11 @@ export default {
       nationality: data.nationality,
       location: data.location,
       email: data.email,
-      qualifications: data.qualifications
+      qualifications: data.qualifications,
+      yearsInCompany: 0,
+      availability: data.availability,
+      hourlyWage: 20,
+      selected: false
     };
     context.commit('addMember', memberData);
   },
@@ -20,5 +24,8 @@ export default {
   },
   resetSelected(context){
     context.commit('resetSelected')
+  },
+  updateFTEAvailability(context, data){
+    context.commit('updateFTEAvailability', data)
   }
 };

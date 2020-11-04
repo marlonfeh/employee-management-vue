@@ -1,6 +1,6 @@
 <template>
   <section
-    class="container mx-auto flex flex-col items-center justify-center text-gray-700"
+    class="container w-1/2 mx-auto flex flex-col items-center justify-center text-gray-700"
   >
     <div class="my-4 p-4 border border-gray-500 rounded-2xl">
       <h2 class="py-10 uppercase text-center font-medium">
@@ -9,12 +9,11 @@
 
       <add-group-form
         :groupMember="groupMemberData"
+        :assignedFTE="assignedFTE"
         @save-data="saveData"
       ></add-group-form>
     </div>
   </section>
-  <p>Group ID: {{ id }}</p>
-  <p>{{ group }}</p>
 </template>
 
 <script>
@@ -34,9 +33,12 @@ export default {
     groupMemberData() {
       return this.$store.getters["members/members"].filter((e) => {
         return this.group.members.some((i) => {
-          return i === e.id;
+          return i.id === e.id;
         });
       });
+    },
+    assignedFTE() {
+      return { val: this.group.members, isValid: true };
     },
   },
   methods: {
@@ -45,8 +47,10 @@ export default {
         id: this.id,
         name: formData.name,
         lead: formData.lead,
+        members: formData.members,
       };
 
+      this.$store.dispatch("members/updateFTEAvailability", formData.members);
       this.$store.dispatch("groups/saveGroup", data);
       this.$router.replace("/frontend/group-add/success");
     },

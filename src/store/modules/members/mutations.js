@@ -12,5 +12,14 @@ export default {
     Members.forEach(arrayItem => {
       arrayItem.selected = false;
     });
+  },
+  updateFTEAvailability(state, payload){
+    payload.forEach(el=>{
+      let member = state.members.find(member => member.id === el.id);
+      member.FTEAvailable = member.FTEAvailable - el.fte
+      console.log(member)
+    })
+
+    
   }
 };

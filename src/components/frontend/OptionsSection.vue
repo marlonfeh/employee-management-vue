@@ -8,7 +8,7 @@
       <base-button :mode="'teal-light'" link to="/frontend/team-add">
         Add
       </base-button>
-      <base-button click @click-handler="groupMembers"> Group </base-button>
+      <base-button click @click-handler="createGroup"> Group </base-button>
       <base-button :mode="'teal-light'" click @click-handler="resetSelected"
         >Reset</base-button
       >
@@ -55,23 +55,25 @@ export default {
     resetSelected() {
       this.$store.dispatch("members/resetSelected");
     },
-    groupMembers() {
+    createGroup() {
       const selectedMember = this.$store.getters["members/members"].filter(
         (el) => {
           return el.selected === true;
         }
       );
 
-      const selectedMemberID = selectedMember.map((el) => el.id);
+      //const selectedMemberID = selectedMember.map((el) => el.id);
+
+      const selectedMemberData = selectedMember.map((el) => {
+        return { id: el.id, fte: 0 };
+      });
 
       const groupData = {
         id: this.generateID(),
         name: "placeholder",
-        lead: selectedMemberID[0],
-        members: selectedMemberID,
+        lead: selectedMemberData[0].id,
+        members: selectedMemberData,
       };
-
-      console.log(groupData);
 
       this.$store.dispatch("groups/createGroup", groupData);
 
