@@ -1,6 +1,8 @@
 <template>
   <div
     class="px-6 py-4 grid grid-cols-12 items-center border-solid border border-gray-500 rounded-lg shadow-lg"
+    :class="{ active: group.selected }"
+    @click="toggleSelected"
   >
     <div class="col-span-2 flex justify-start">
       <div
@@ -50,6 +52,11 @@ export default {
       );
     },
   },
+  methods: {
+    toggleSelected() {
+      this.$emit("toggle-selected", this.id);
+    },
+  },
   created() {
     this.groupMembers = this.$store.getters["members/members"].filter((el) => {
       return this.group.members.some((f) => {
@@ -59,3 +66,9 @@ export default {
   },
 };
 </script>
+
+<style>
+.active {
+  @apply bg-green-400;
+}
+</style>

@@ -5,6 +5,7 @@
       :key="group.id"
       :id="group.id"
       :group="group"
+      @toggle-selected="toggleSelected"
     ></list-item-groups>
   </section>
 </template>
@@ -19,6 +20,11 @@ export default {
   computed: {
     groups() {
       return this.$store.getters["groups/groups"];
+    },
+  },
+  methods: {
+    toggleSelected(groupID) {
+      this.$store.dispatch("groups/toggleSelected", groupID);
     },
   },
 };

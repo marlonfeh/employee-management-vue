@@ -1,7 +1,7 @@
 <template>
   <section
     id="cardSection"
-    class="container mx-auto py-10 grid grid-cols-3 gap-x-24 gap-y-16 justify-items-center"
+    class="container mx-auto py-10 grid grid-cols-3 gap-y-16 justify-items-center"
   >
     <card-item
       v-for="member in Members"

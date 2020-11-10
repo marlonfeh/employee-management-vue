@@ -19,16 +19,16 @@
         </p>
         <p>
           <span class="font-semibold">Aggregated Wage per Hour:</span>
-          {{ aggregatedFTE }}
+          {{ aggregatedWage }}
         </p>
       </div>
     </div>
   </section>
-  <group-member-cards :groupMembers="groupMembers"></group-member-cards>
+  <card-section-groups :groupMembers="groupMembers"></card-section-groups>
 </template>
 
 <script>
-import GroupMemberCards from "../../../components/frontend/groups/GroupMemberCards.vue";
+import CardSectionGroups from "../../../components/frontend/groups/CardSectionGroups.vue";
 export default {
   data() {
     return {
@@ -37,7 +37,7 @@ export default {
     };
   },
   components: {
-    GroupMemberCards,
+    CardSectionGroups,
   },
   props: ["id"],
   computed: {
@@ -52,11 +52,10 @@ export default {
     aggregatedFTE() {
       return this.group.members.reduce((acc, curr) => acc + curr.fte, 0);
     },
-    /*
+
     aggregatedWage() {
-      return this.group.members.reduce((acc, curr) => acc + curr.fte, 0);
+      return this.groupMembers.reduce((acc, curr) => acc + curr.hourlyWage, 0);
     },
-    */
   },
   created() {
     this.group = this.$store.getters["groups/groups"].find(

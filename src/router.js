@@ -11,6 +11,8 @@ import GroupsList from './pages/frontend/groups/GroupsList.vue';
 import GroupDetail from './pages/frontend/groups/GroupDetail.vue';
 import GroupAdd from './pages/frontend/groups/GroupAdd.vue';
 import GroupAddSuccess from './pages/frontend/groups/GroupAddSuccess.vue';
+import GroupMerge from './pages/frontend/groups/GroupMerge.vue';
+import GroupMergeSuccess from './pages/frontend/groups/GroupMergeSuccess.vue';
 
 import PlaceholderBackend from './pages/backend/PlaceholderBackend.vue';
 import NotFound from './pages/NotFound.vue';
@@ -32,6 +34,8 @@ const router = createRouter({
       { path: 'group-detail/:id', component: GroupDetail, props: true},
       { path: 'group-add/:id', component: GroupAdd, props: true},
       { path: 'group-add/success', component: GroupAddSuccess},
+      { path: 'group-merge/:id', component: GroupMerge, props: true},
+      { path: 'group-merge/success', component: GroupMergeSuccess},
       
       { path: '', component: TeamCards },
       

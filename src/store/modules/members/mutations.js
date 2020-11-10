@@ -19,7 +19,5 @@ export default {
       member.FTEAvailable = member.FTEAvailable - el.fte
       console.log(member)
     })
-
-    
   }
 };

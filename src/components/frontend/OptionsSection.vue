@@ -5,11 +5,9 @@
       class="flex justify-center space-x-4 py-3 px-4 mb-10 bg-gray-300 rounded-2xl"
       v-if="mode === 'teams'"
     >
-      <base-button :mode="'teal-light'" link to="/frontend/team-add">
-        Add
-      </base-button>
+      <base-button link to="/frontend/team-add"> Add </base-button>
       <base-button click @click-handler="createGroup"> Group </base-button>
-      <base-button :mode="'teal-light'" click @click-handler="resetSelected"
+      <base-button click @click-handler="resetSelectedMembers"
         >Reset</base-button
       >
     </div>
@@ -18,8 +16,10 @@
       class="flex justify-center space-x-4 py-3 px-4 mb-10 bg-gray-300 rounded-2xl"
       v-if="mode === 'groups'"
     >
-      <base-button :mode="'teal-light'"> Edit </base-button>
-      <base-button :mode="'teal-light'"> Merge </base-button>
+      <base-button click @click-handler="mergeGroups"> Merge </base-button>
+      <base-button click @click-handler="resetSelectedGroups">
+        Reset
+      </base-button>
       <!--<base-button :mode="'teal-light'"> Contact </base-button>-->
     </div>
 
@@ -52,8 +52,11 @@ export default {
     generateID() {
       return Math.random().toString(36).substr(2, 9);
     },
-    resetSelected() {
+    resetSelectedMembers() {
       this.$store.dispatch("members/resetSelected");
+    },
+    resetSelectedGroups() {
+      this.$store.dispatch("groups/resetSelected");
     },
     createGroup() {
       const selectedMember = this.$store.getters["members/members"].filter(
@@ -77,9 +80,42 @@ export default {
 
       this.$store.dispatch("groups/createGroup", groupData);
 
-      this.resetSelected();
+      this.resetSelectedMembers();
 
       this.$router.replace("/frontend/group-add/" + groupData.id);
+    },
+    mergeGroups() {
+      console.log("merge");
+
+      const selectedGroups = this.$store.getters["groups/groups"].filter(
+        (el) => {
+          return el.selected === true;
+        }
+      );
+
+      let selectedGroupMembers = [];
+
+      selectedGroups.forEach((el) => {
+        selectedGroupMembers = selectedGroupMembers.concat(el.members);
+      });
+
+      const groupData = {
+        id: this.generateID(),
+        name: selectedGroups[0].name,
+        lead: selectedGroups[0].lead,
+        members: selectedGroupMembers,
+        groupData: selectedGroups,
+      };
+
+      console.log(groupData);
+
+      //When saving new group -> Delete old groups
+
+      this.$store.dispatch("groups/mergeGroups", groupData);
+
+      this.resetSelectedGroups();
+
+      this.$router.replace("/frontend/group-merge/" + groupData.id);
     },
     emitEvent() {
       this.$emit("emit-event");

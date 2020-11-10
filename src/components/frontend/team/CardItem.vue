@@ -1,6 +1,6 @@
 <template>
   <div
-    class="max-w-xs min-w-full px-6 py-4 flex flex-col items-center space-y-2 border-solid border border-gray-500 rounded-lg shadow-xl"
+    class="w-5/6 px-6 py-4 flex flex-col items-center space-y-2 border-solid border border-gray-500 rounded-lg shadow-xl"
     :class="{ active: selected }"
     @click="toggleSelected"
   >
