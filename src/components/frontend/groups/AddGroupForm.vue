@@ -57,7 +57,7 @@
         </div>
       </div>
     </div>
-    <div class="">
+    <div class="w-full">
       <p
         class="block uppercase tracking-wide text-gray-700 text-sm font-bold mb-4"
         for="name"
@@ -65,27 +65,32 @@
         Assign FTE Values
       </p>
       <div
-        class="grid grid-cols-3 items-center mb-2"
+        class="grid grid-cols-12 items-center mb-2"
         v-for="(member, index) in groupMember"
         :key="index"
       >
-        <p class="tracking-wide text-gray-700 text-sm font-bold">
+        <p class="col-span-3 tracking-wide text-gray-700 text-sm font-bold">
           {{ member.firstName }} {{ member.lastName }}
         </p>
         <input
-          class="w-1/2 px-4 py-2 bg-gray-200 border border-gray-200 rounded text-base text-gray-700 focus:outline-none focus:border-gray-500"
+          class="col-span-2 px-4 py-2 mr-4 bg-gray-200 border border-gray-200 rounded text-base text-gray-700 focus:outline-none focus:border-gray-500"
           type="number"
           min="0"
           :max="FTEAvailable(member.id)"
           step=".05"
           :id="member.id"
-          v-model.number="FTEData.val[index].fte"
+          v-model.number="FTEData.val[FTEDataIndex(member.id)].fte"
         />
-        <p>Available FTE: {{ getFTEMax(member.id) }}</p>
+        <p class="col-span-4">Available FTE: {{ getFTEMax(member.id) }}</p>
       </div>
     </div>
   </form>
-  <div class="flex justify-center space-x-6 mt-6">
+  <div class="mt-4 flex justify-center">
+    <p class="font-light text-sm">
+      Note: Assigning a value of 0 FTE will drop the member off the group.
+    </p>
+  </div>
+  <div class="flex justify-center space-x-6 mt-8">
     <button
       class="my-auto px-3 py-1 rounded-full text-white bg-teal-500 hover:bg-teal-600"
       form="addGroupForm"
@@ -163,6 +168,14 @@ export default {
             100
         ) / 100
       );
+    },
+    FTEDataIndex(memberID) {
+      //Get Indey by ID
+      return this.FTEData.val.findIndex((element) => {
+        if (element.id === memberID) {
+          return true;
+        }
+      });
     },
   },
   created() {

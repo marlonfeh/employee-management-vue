@@ -85,15 +85,13 @@ export default {
       this.$router.replace("/frontend/group-add/" + groupData.id);
     },
     mergeGroups() {
-      console.log("merge");
+      let selectedGroupMembers = [];
 
       const selectedGroups = this.$store.getters["groups/groups"].filter(
         (el) => {
           return el.selected === true;
         }
       );
-
-      let selectedGroupMembers = [];
 
       selectedGroups.forEach((el) => {
         selectedGroupMembers = selectedGroupMembers.concat(el.members);
@@ -107,9 +105,7 @@ export default {
         groupData: selectedGroups,
       };
 
-      console.log(groupData);
-
-      //When saving new group -> Delete old groups
+      //console.log(groupData);
 
       this.$store.dispatch("groups/mergeGroups", groupData);
 

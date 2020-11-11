@@ -1,7 +1,5 @@
 <template>
-  <section
-    class="container w-1/2 mx-auto flex flex-col items-center justify-center text-gray-700"
-  >
+  <section class="container w-1/2 mx-auto text-gray-700">
     <div class="my-4 p-4 border border-gray-500 rounded-2xl">
       <h2 class="py-10 uppercase text-center font-medium">
         Enter details of new Group

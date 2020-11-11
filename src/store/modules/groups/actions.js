@@ -14,6 +14,8 @@ export default {
     context.commit('saveGroup', data);
   },
   deleteTMPGroups(context){
+
+    //Restore groupData if mergedGroup tmp
     context.commit('deleteTMPGroups')
   },
   changeMemberFTE(context, data){
@@ -53,6 +55,16 @@ export default {
       tmp: true,
       selected: false,
     }
+
+    console.log(groupData.mergedGroupData)
+
+    groupData.mergedGroupData.forEach(el => {
+      context.commit('deleteGroupByID', el.id)
+    })
+
+
+    //Dispatch cross-module to update FTEAvailableValues
+    context.dispatch("members/UpdateFTEAvailableMergeGroups", groupData.members, { root: true });
 
     context.commit('mergeGroups', groupData)
   }

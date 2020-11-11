@@ -17,7 +17,14 @@ export default {
     payload.forEach(el=>{
       let member = state.members.find(member => member.id === el.id);
       member.FTEAvailable = member.FTEAvailable - el.fte
-      console.log(member)
+      //console.log(member)
+    })
+  },
+  UpdateFTEAvailableMergeGroups(state, payload){
+    payload.forEach(el=>{
+      let member = state.members.find(member => member.id === el.id);
+      member.FTEAvailable = member.FTEAvailable + el.fte
+      //console.log(member)
     })
   }
 };

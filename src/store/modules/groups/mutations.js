@@ -39,4 +39,12 @@ export default {
     state.groups.push(payload);
     console.log(state.groups)
   },
+  deleteGroupByID(state, payload){
+    const filteredGroups = state.groups.filter((el) => {
+      return el.id !== payload
+    });
+
+    state.groups = filteredGroups;
+ 
+  },
 };

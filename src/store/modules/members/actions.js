@@ -27,5 +27,9 @@ export default {
   },
   updateFTEAvailability(context, data){
     context.commit('updateFTEAvailability', data)
+  },
+  UpdateFTEAvailableMergeGroups(context, data){
+    console.log(data)
+    context.commit('UpdateFTEAvailableMergeGroups', data)
   }
 };
