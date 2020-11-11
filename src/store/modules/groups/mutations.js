@@ -3,6 +3,19 @@ export default {
     state.groups.push(payload);
   },
   saveGroup(state, payload) {
+    
+    
+    let isLeadIncluded = payload.members.find(el => {
+      return el.id === payload.lead
+    })
+
+    console.log(isLeadIncluded)
+
+    if(isLeadIncluded === undefined){
+      payload.lead = payload.members[0].id
+    }
+
+
     let groupItem = state.groups.find(group => group.id === payload.id);
     groupItem.name = payload.name;
     groupItem.lead = payload.lead;
@@ -35,9 +48,8 @@ export default {
     });
   },
   mergeGroups(state, payload){
-    console.log(payload)
+    
     state.groups.push(payload);
-    console.log(state.groups)
   },
   deleteGroupByID(state, payload){
     const filteredGroups = state.groups.filter((el) => {

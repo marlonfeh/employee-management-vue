@@ -13,14 +13,14 @@ export default {
       arrayItem.selected = false;
     });
   },
-  updateFTEAvailability(state, payload){
+  updateFTEAvailabilityPositive(state, payload){
     payload.forEach(el=>{
       let member = state.members.find(member => member.id === el.id);
       member.FTEAvailable = member.FTEAvailable - el.fte
       //console.log(member)
     })
   },
-  UpdateFTEAvailableMergeGroups(state, payload){
+  updateFTEAvailabilityNegative(state, payload){
     payload.forEach(el=>{
       let member = state.members.find(member => member.id === el.id);
       member.FTEAvailable = member.FTEAvailable + el.fte

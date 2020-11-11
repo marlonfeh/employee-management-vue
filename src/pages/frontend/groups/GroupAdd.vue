@@ -45,10 +45,15 @@ export default {
         id: this.id,
         name: formData.name,
         lead: formData.lead,
-        members: formData.members,
+        members: formData.members.filter((el) => {
+          return el.fte !== 0;
+        }),
       };
 
-      this.$store.dispatch("members/updateFTEAvailability", formData.members);
+      this.$store.dispatch(
+        "members/updateFTEAvailabilityPositive",
+        formData.members
+      );
       this.$store.dispatch("groups/saveGroup", data);
       this.$router.replace("/frontend/group-add/success");
     },

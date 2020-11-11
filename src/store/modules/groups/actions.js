@@ -64,7 +64,7 @@ export default {
 
 
     //Dispatch cross-module to update FTEAvailableValues
-    context.dispatch("members/UpdateFTEAvailableMergeGroups", groupData.members, { root: true });
+    context.dispatch("members/updateFTEAvailabilityNegative", groupData.members, { root: true });
 
     context.commit('mergeGroups', groupData)
   }

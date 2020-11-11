@@ -25,11 +25,10 @@ export default {
   resetSelected(context){
     context.commit('resetSelected')
   },
-  updateFTEAvailability(context, data){
-    context.commit('updateFTEAvailability', data)
+  updateFTEAvailabilityPositive(context, data){
+    context.commit('updateFTEAvailabilityPositive', data)
   },
-  UpdateFTEAvailableMergeGroups(context, data){
-    console.log(data)
-    context.commit('UpdateFTEAvailableMergeGroups', data)
+  updateFTEAvailabilityNegative(context, data){
+    context.commit('updateFTEAvailabilityNegative', data)
   }
 };

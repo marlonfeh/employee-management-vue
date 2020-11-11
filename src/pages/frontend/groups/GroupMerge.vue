@@ -48,7 +48,10 @@ export default {
         members: formData.members,
       };
 
-      this.$store.dispatch("members/updateFTEAvailability", formData.members);
+      this.$store.dispatch(
+        "members/updateFTEAvailabilityPositive",
+        formData.members
+      );
       this.$store.dispatch("groups/saveGroup", data);
       this.$router.replace("/frontend/group-merge/success");
     },

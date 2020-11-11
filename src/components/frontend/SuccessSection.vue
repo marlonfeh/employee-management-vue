@@ -15,10 +15,16 @@
         <span class="text-green-400">Success</span> - New team member created!
       </h2>
       <h2
-        v-if="mode === 'group'"
+        v-if="mode === 'group-create'"
         class="text-white text-center text-3xl font-medium"
       >
         <span class="text-green-400">Success</span> - New Group Created!
+      </h2>
+      <h2
+        v-if="mode === 'group-merge'"
+        class="text-white text-center text-3xl font-medium"
+      >
+        <span class="text-green-400">Success</span> - Groups Merged!
       </h2>
     </div>
   </section>
