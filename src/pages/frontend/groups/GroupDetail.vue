@@ -25,10 +25,17 @@
     </div>
   </section>
   <card-section-groups :groupMembers="groupMembers"></card-section-groups>
+  <options-section
+    :edit="edit"
+    :mode="'group-detail'"
+    @click-edit="toggleEditMode"
+    @click-save="saveData"
+  ></options-section>
 </template>
 
 <script>
 import CardSectionGroups from "../../../components/frontend/groups/CardSectionGroups.vue";
+import OptionsSection from "../../../components/frontend/OptionsSection.vue";
 export default {
   data() {
     return {
@@ -38,6 +45,7 @@ export default {
   },
   components: {
     CardSectionGroups,
+    OptionsSection,
   },
   props: ["id"],
   computed: {
@@ -55,6 +63,23 @@ export default {
 
     aggregatedWage() {
       return this.groupMembers.reduce((acc, curr) => acc + curr.hourlyWage, 0);
+    },
+  },
+  methods: {
+    toggleEditMode() {
+      this.edit = !this.edit;
+    },
+    saveData() {
+      /*
+      const data = {
+        id: this.selectedMember.id,
+        groupData: this.selectedMemberWages,
+      };
+
+      this.$store.dispatch("groups/changeMemberFTE", data);
+
+      this.toggleEditMode();
+      */
     },
   },
   created() {

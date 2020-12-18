@@ -11,7 +11,7 @@
         >Reset</base-button
       >
     </div>
-    <!--Groups-->
+    <!--Groups List-->
     <div
       class="flex justify-center space-x-4 py-3 px-4 mb-10 bg-gray-300 rounded-2xl"
       v-if="mode === 'groups'"
@@ -27,6 +27,17 @@
     <div
       class="flex justify-center space-x-4 py-3 px-4 mb-10 bg-gray-300 rounded-2xl"
       v-if="mode === 'member-detail'"
+    >
+      <base-button v-if="!edit" click @click-handler="clickEdit">
+        Edit
+      </base-button>
+      <base-button v-else click @click-handler="clickSave"> Save </base-button>
+    </div>
+
+    <!--Group Detail-->
+    <div
+      class="flex justify-center space-x-4 py-3 px-4 mb-10 bg-gray-300 rounded-2xl"
+      v-if="mode === 'group-detail'"
     >
       <base-button v-if="!edit" click @click-handler="clickEdit">
         Edit
